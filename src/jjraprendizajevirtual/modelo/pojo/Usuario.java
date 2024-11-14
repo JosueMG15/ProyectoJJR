@@ -7,17 +7,20 @@ public class Usuario {
     private String correoElectronico;
     private String nombre;
     private String telefono;
+    private String administrador;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String apellidos, String contraseña, String correoElectronico, String nombre, String telefono) {
+    public Usuario(int idUsuario, String apellidos, String contraseña, String correoElectronico, 
+            String nombre, String telefono, String administrador) {
         this.idUsuario = idUsuario;
         this.apellidos = apellidos;
         this.contraseña = contraseña;
         this.correoElectronico = correoElectronico;
         this.nombre = nombre;
         this.telefono = telefono;
+        this.administrador = administrador;
     }
 
     public int getIdUsuario() {
@@ -68,5 +71,11 @@ public class Usuario {
         this.telefono = telefono;
     }
     
-    
+    public String getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(String administrador) {
+        this.administrador = administrador;
+    }
 }

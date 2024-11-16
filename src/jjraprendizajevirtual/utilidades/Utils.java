@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import jjraprendizajevirtual.JJRAprendizajeVirtual;
 import jjraprendizajevirtual.controladores.FXMLMenuPrincipalController;
 import jjraprendizajevirtual.modelo.pojo.Usuario;
 
@@ -22,14 +23,17 @@ public class Utils {
         alerta.showAndWait();
     }
 
-    public static void cargarVistaConControlador(String rutaVista, ActionEvent evento, Usuario usuario) {
+    public static <T> void cargarVistaConControlador(String rutaVista, ActionEvent evento, 
+            Usuario usuario, Class<T> controladorClase) {
         try {
-            FXMLLoader loader = new FXMLLoader(Utils.class.getResource(rutaVista));
+            FXMLLoader loader = new FXMLLoader(JJRAprendizajeVirtual.class.getResource(rutaVista));
             Parent root = loader.load();
 
             // Obtener el controlador
-            FXMLMenuPrincipalController controlador = loader.getController();
-            controlador.inicializarMenu(usuario);
+            T controlador = loader.getController();
+            if (controlador instanceof FXMLMenuPrincipalController) {
+                ((FXMLMenuPrincipalController) controlador).inicializarMenu(usuario);
+            }
 
             // Cambiar la escena
             Stage stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
@@ -39,5 +43,13 @@ public class Utils {
             e.printStackTrace();
             mostrarAlerta("Error", "No se pudo cargar la vista: " + e.getMessage(), Alert.AlertType.ERROR);
         }
+    }
+    
+    public static boolean validarCampo(String campo) {
+        if (campo.trim().isEmpty())
+        {
+            return false;
+        }
+        return true;
     }
 }

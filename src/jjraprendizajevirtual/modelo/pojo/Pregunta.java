@@ -1,16 +1,18 @@
 package jjraprendizajevirtual.modelo.pojo;
 
+import java.util.Date;
+
 public class Pregunta {
     private int idPregunta;
     private String contenido;
-    private String fechaCreacion;
+    private Date fechaCreacion;
     private String titulo;
     private int idUsuario;
 
     public Pregunta() {
     }
 
-    public Pregunta(int idPregunta, String contenido, String fechaCreacion, String titulo, int idUsuario) {
+    public Pregunta(int idPregunta, String contenido, Date fechaCreacion, String titulo, int idUsuario) {
         this.idPregunta = idPregunta;
         this.contenido = contenido;
         this.fechaCreacion = fechaCreacion;
@@ -34,11 +36,11 @@ public class Pregunta {
         this.contenido = contenido;
     }
 
-    public String getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 

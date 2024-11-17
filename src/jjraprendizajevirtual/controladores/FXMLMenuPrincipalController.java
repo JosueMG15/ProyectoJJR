@@ -19,7 +19,7 @@ import jjraprendizajevirtual.utilidades.SingletonUsuario;
 import jjraprendizajevirtual.utilidades.Utils;
 
 public class FXMLMenuPrincipalController implements Initializable {
-    
+
     @FXML
     private Label lbMenuPrincipal;
     @FXML
@@ -47,12 +47,22 @@ public class FXMLMenuPrincipalController implements Initializable {
 
     @FXML
     private void btnSubirArchivo(ActionEvent event) {
-        System.out.println("Subiendo archivo...");
+        try {
+            Utils.cargarVistaConControlador("vistas/FXMLSubirArchivos.fxml", event, usuarioActual,
+                    FXMLSubirArchivosController.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void btnConsultarArchivo(ActionEvent event) {
-        System.out.println("Consultando archivo...");
+        try {
+            Utils.cargarVistaConControlador("vistas/FXMLConsultarArchivo.fxml", event, usuarioActual,
+                    FXMLConsultarArchivoController.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -60,7 +70,7 @@ public class FXMLMenuPrincipalController implements Initializable {
         System.out.println("Abriendo foro...");
         try {
             Utils.cargarVistaConControlador("vistas/FXMLForo.fxml", event, usuarioActual,
-                FXMLMenuPrincipalController.class);
+                    FXMLMenuPrincipalController.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,7 +82,7 @@ public class FXMLMenuPrincipalController implements Initializable {
         if (pregunta != null) {
             boolean resultado = PreguntaDAO.subirPregunta(pregunta);
             if (resultado) {
-                Utils.mostrarAlerta("Su pregunta ha sido publicada en el foro", 
+                Utils.mostrarAlerta("Su pregunta ha sido publicada en el foro",
                         "Para poder visualizar su pregunta consulte el apartado de foro",
                         Alert.AlertType.INFORMATION);
                 tfTitulo.clear();
@@ -80,14 +90,14 @@ public class FXMLMenuPrincipalController implements Initializable {
             }
         }
     }
-    
+
     private Pregunta generarPregunta() {
         Pregunta pregunta = new Pregunta();
         String titulo = tfTitulo.getText().trim();
         String contenido = tfPregunta.getText().trim();
         Date fechaCreacion = new Date();
         int idUsuario = usuarioActual.getIdUsuario();
-        
+
         if (Utils.validarCampo(titulo) && Utils.validarCampo(contenido)) {
             pregunta.setTitulo(titulo);
             pregunta.setContenido(contenido);
@@ -97,7 +107,7 @@ public class FXMLMenuPrincipalController implements Initializable {
             Utils.mostrarAlerta("Error en el registro de su pregunta", "Su pregunta tiene campos sin completar o incorrectos, "
                     + "por lo que no se ha podido enviar.", Alert.AlertType.WARNING);
         }
-        
+
         return pregunta;
     }
 }

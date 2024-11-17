@@ -6,6 +6,8 @@ public class Respuesta {
     private String fechaCreacion;
     private int idPregunta;
     private int idUsuario;
+   private String nombreUsuario;
+
 
     public Respuesta() {
     }
@@ -58,5 +60,13 @@ public class Respuesta {
         this.idUsuario = idUsuario;
     }
     
-    
+
+public String getNombreUsuario() {
+    return nombreUsuario;
+}
+
+public void setNombreUsuario(String nombreUsuario) {
+    this.nombreUsuario = nombreUsuario;
+}
+
 }

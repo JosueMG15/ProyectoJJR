@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="jjraprendizajevirtual.controladores.FXMLSubirArchivosController">
+    <children>
+        <VBox alignment="CENTER" spacing="10" prefWidth="600" prefHeight="400">
+            <Label text="Subir Recurso" style="-fx-font-size: 24px;" />
+            <TextField fx:id="tfTitulo" promptText="Título" />
+            <TextField fx:id="tfAutor" promptText="Autor" />
+            <TextField fx:id="tfUrl" promptText="URL" />
+            <ComboBox fx:id="cbTipoRecurso" promptText="Seleccione tipo de recurso" />
+            <!-- Campos adicionales dinámicos -->
+            <TextField fx:id="tfExtra" promptText="Resolución / Duración / Formato" />
+            <HBox spacing="10">
+                <Button text="Guardar" onAction="#btnGuardarArchivo" />
+                <Button text="Cancelar" onAction="#btnCancelar" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>
